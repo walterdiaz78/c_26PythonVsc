@@ -116,12 +116,58 @@ german:dict = {
     "email": "german@mail.com",
     "Lenguajes": ["python", "java", "js"],
     10: "Messi",
-    ("usuario", "password"): 1_000_000
+    ("german_123", "1234"): 1_000_000
 }
 
 print(german)
 lg= 'Los lenguajes que maneja el usuario son: '
 print(lg, german["Lenguajes"])
 
-for data in german:
-    print (data)
+for k,v in german.items():
+    print (k,": ", v)
+
+#user:str=input("Ingrese user: \t")
+#pwd:str=input("Ingrese password: \t")
+
+#print (german[(user,pwd)])
+
+#-----------------
+import random
+import string
+
+
+user:list ="belen, walter, melina, susana".split(",")
+pwd:list = [
+    ''.join(random.choices(string.ascii_uppercase + string.digits, k=6))
+    for pwd in range(4)
+
+
+]
+print(user,pwd)
+
+usuarios_unicos:list = [
+    {
+        "nombre":u,
+        "password":p,
+        "status" : True,
+        "mail" :f"{u}_underco@mail.com"
+    }
+    for u,p in zip(user,pwd)
+]
+print(usuarios_unicos)
+
+for usuario in usuarios_unicos:
+    with open (f"{usuario['nombre']}.txt", "w" , encoding="utf8") as f:
+        mensaje_:str = f"""
+
+            Bienvenido, {usuario['nombre']}
+            Tu email es, {usuario['mail']}
+            Tu contraseña es, {usuario['password']}
+        """
+        f.write(mensaje_)
+        
+        
+       
+  
+
+
